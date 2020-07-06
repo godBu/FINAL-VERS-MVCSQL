@@ -20,16 +20,47 @@ namespace DapperCRUDAPI.Controllers
         {
             movieRepository = new Models.MovieRepository();
         }
+
         [HttpGet]
+
         public IEnumerable<Movie> Get()
         {
             return movieRepository.GetAllMovies();
         }
+
         [HttpGet("{id}")]
 
         public Movie Get(int id)
         {
             return movieRepository.GetByID(id);
+        }
+
+        [HttpPost]
+
+        public void Post([FromBody] Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                movieRepository.AddMovie(movie);
+            }
+        }
+
+        [HttpPut("{id}")]
+
+        public void Put(int id, [FromBody] Movie newMovie)
+        {
+            newMovie.MovieID = id;
+            if (ModelState.IsValid)
+            {
+                movieRepository.UpdateMovies(newMovie);
+            }
+        }
+
+        [HttpDelete]
+
+        public void Delete(int id)
+        {
+            movieRepository.DeleteByID(id);
         }
     }
 }
