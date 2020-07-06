@@ -70,9 +70,9 @@ namespace DapperCRUDAPI.Models
         {
             using (IDbConnection dbConnection = Connection)
             {
-                string linkToDB = @"EXEC MovieUpdate @MovieID = @MovieID, @Title = @Title, @Genre = @Genre, @Rating = @Rating, @ReleaseDate = @ReleaseDate, @IMDbScore = @IMDbScore";
+                string sQuery = @"EXEC MovieUpdate @MovieID = @MovieID, @Title = @Title, @Genre = @Genre, @Rating = @Rating, @ReleaseDate = @ReleaseDate, @IMDbScore = @IMDbScore";
                 dbConnection.Open();
-                dbConnection.Query(linkToDB, newMovie);
+                dbConnection.Query(sQuery, newMovie);
             }
         }
 
